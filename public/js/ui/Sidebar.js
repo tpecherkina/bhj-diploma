@@ -17,8 +17,14 @@ class Sidebar {
    * переключает два класса для body: sidebar-open и sidebar-collapse
    * при нажатии на кнопку .sidebar-toggle
    * */
-  static initToggleButton() {
-
+   static initToggleButton() {
+    let sidebarMini = document.querySelector(".sidebar-mini");
+    let sidebarToggle = document.querySelector(".sidebar-toggle");
+    sidebarToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      sidebarMini.classList.toggle("sidebar-open");
+      sidebarMini.classList.toggle("sidebar-collapse");
+    });
   }
 
   /**
@@ -29,6 +35,28 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
+    const register = document.querySelector(".menu-item_register");
+    const enter = document.querySelector(".menu-item_login");
+    const output = document.querySelector(".menu-item_logout");
+    
+     register.addEventListener('click', (e) => {
+      e.preventDefault();
+      App.getModal('register').open();
+    });
 
-  }
+    login.addEventListener('click', (e) => {
+      e.preventDefault();
+      App.getModal('login').open();
+    });
+
+    logout.addEventListener('click', (e) => {
+      e.preventDefault();
+      User.logout({}, (err, response) => {
+        if(response.success) {
+          App.setState( 'init' );
+        }
+      });
+    });
+
+    }
 }
