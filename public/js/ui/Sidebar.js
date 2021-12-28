@@ -44,12 +44,12 @@ class Sidebar {
       App.getModal('register').open();
     });
 
-    login.addEventListener('click', (e) => {
+   enter.addEventListener('click', (e) => {
       e.preventDefault();
       App.getModal('login').open();
     });
 
-    logout.addEventListener('click', (e) => {
+    output.addEventListener('click', (e) => {
       e.preventDefault();
       User.output({}, (err, response) => {
         if(response.success) {
